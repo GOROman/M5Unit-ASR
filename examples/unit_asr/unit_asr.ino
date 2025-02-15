@@ -26,7 +26,7 @@
 
 #include <M5Unified.h>
 #include <unit_asr.hpp>
-#include "command_def.h"  // コマンド番号定義
+#include "unit_asr_commands.h"  // コマンド番号定義
 
 // ASRユニットのインスタンスを作成
 ASRUnit asr;
