@@ -26,6 +26,7 @@
 
 #include <M5Unified.h>
 #include <unit_asr.hpp>
+#include "command_def.h"  // コマンド番号定義
 
 // ASRユニットのインスタンスを作成
 ASRUnit asr;
@@ -72,14 +73,14 @@ void loop()
     if (M5.BtnA.wasPressed()) {
         asr.printCommandList();  // 登録済みコマンドの一覧を表示
         // コマンド番号0x32に対応する単語を検索
-        Serial.printf("Search command word: %s\n", asr.searchCommandWord(0x32));
+        Serial.printf("Search command word: %s\n", asr.searchCommandWord(CMD_HELLO));
         // "hello"コマンドに対応する番号を検索
         Serial.printf("Search command number: %d\n", asr.searchCommandNum("hello"));
     }
     // ボタンB: 新規コマンド"hello"の追加
     else if (M5.BtnB.wasPressed()) {
         // コマンド番号0x32、単語"hello"、ハンドラmyCommandHandlerを登録
-        Serial.printf(asr.addCommandWord(0x32, "hello", myCommandHandler) ? 
+        Serial.printf(asr.addCommandWord(CMD_HELLO, "hello", myCommandHandler) ? 
                      "Add Success\n" : "Add Fail\n");
     }
     // ボタンC: コマンド"hello"の削除
