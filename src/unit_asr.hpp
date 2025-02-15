@@ -21,118 +21,118 @@ public:
     typedef std::function<void()> CommandHandler;
 
     /**
-     * @brief Initializes the ASR unit with serial communication parameters.
+     * @brief ASRユニットのシリアル通信パラメータを初期化します。
      *
-     * This function sets up the serial communication for the ASR unit by configuring
-     * the specified hardware serial port with the given baud rate and pin assignments.
+     * この関数は、指定されたハードウェアシリアルポートを設定し、
+     * 指定されたボーレートとピン割り当てでASRユニットのシリアル通信を設定します。
      *
-     * @param serial Pointer to a HardwareSerial object, defaults to Serial1
-     * @param baud The baud rate for serial communication, defaults to 115200
-     * @param RX The GPIO pin number for receiving data, defaults to 16
-     * @param TX The GPIO pin number for transmitting data, defaults to 17
+     * @param serial HardwareSerialオブジェクトへのポインタ、デフォルトはSerial1
+     * @param baud シリアル通信のボーレート、デフォルトは115200
+     * @param RX データ受信用のGPIOピン番号、デフォルトは16
+     * @param TX データ送信用のGPIOピン番号、デフォルトは17
      */
     void begin(HardwareSerial *serial = &Serial1, int baud = UNIT_ASR_BAUD, uint8_t RX = 16, uint8_t TX = 17);
 
     /**
-     * @brief Sends a command number to the ASR unit.
+     * @brief ASRユニットにコマンド番号を送信します。
      *
-     * Transmits the specified command number to the ASR unit through the configured
-     * serial connection.
+     * 設定されたシリアル接続を通じて、指定されたコマンド番号を
+     * ASRユニットに送信します。
      *
-     * @param commandNum The command number to send to the ASR unit
+     * @param commandNum ASRユニットに送信するコマンド番号
      */
     void sendComandNum(uint8_t commandNum);
 
     /**
-     * @brief Retrieves the current raw message from the ASR unit.
+     * @brief ASRユニットから現在の生メッセージを取得します。
      *
-     * @return The raw message string received from the ASR unit
+     * @return ASRユニットから受信した生メッセージ文字列
      */
     String getCurrentRawMessage();
 
     /**
-     * @brief Gets the currently recognized command word.
+     * @brief 現在認識されているコマンドワードを取得します。
      *
-     * @return The string representation of the current command word
+     * @return 現在のコマンドワードの文字列表現
      */
     String getCurrentCommandWord();
 
     /**
-     * @brief Gets the current command number.
+     * @brief 現在のコマンド番号を取得します。
      *
-     * @return The numeric identifier of the current command
+     * @return 現在のコマンドの数値識別子
      */
     uint8_t getCurrentCommandNum();
 
     /**
-     * @brief Checks and executes the handler for the current command.
+     * @brief 現在のコマンドのハンドラーを確認して実行します。
      *
-     * Attempts to execute the handler function associated with the current command
-     * if one exists.
+     * 現在のコマンドに関連付けられたハンドラー関数が存在する場合、
+     * その実行を試みます。
      *
-     * @return true if a handler exists and was executed successfully, false otherwise
+     * @return ハンドラーが存在し正常に実行された場合はtrue、それ以外はfalse
      */
     bool checkCurrentCommandHandler();
 
     /**
-     * @brief Adds a new command word and its associated handler to the command list.
+     * @brief 新しいコマンドワードとそれに関連するハンドラーをコマンドリストに追加します。
      *
-     * This function registers a new voice command with its corresponding command number
-     * and optional handler function.
+     * この関数は、新しい音声コマンドをそれに対応するコマンド番号と
+     * オプションのハンドラー関数とともに登録します。
      *
-     * @param commandNum The numeric identifier for the command
-     * @param commandWord The voice command word or phrase to recognize
-     * @param handler Optional callback function to execute when the command is recognized
-     * @return true if the command was successfully added, false otherwise
+     * @param commandNum コマンドの数値識別子
+     * @param commandWord 認識する音声コマンドワードまたはフレーズ
+     * @param handler コマンドが認識された時に実行するオプションのコールバック関数
+     * @return コマンドが正常に追加された場合はtrue、それ以外はfalse
      */
     bool addCommandWord(uint8_t commandNum, const String &commandWord, CommandHandler handler = nullptr);
 
     /**
-     * @brief Removes a command word from the command list.
+     * @brief コマンドリストからコマンドワードを削除します。
      *
-     * @param commandWord The command word to remove from the recognition list
-     * @return true if the command was successfully removed, false otherwise
+     * @param commandWord 認識リストから削除するコマンドワード
+     * @return コマンドが正常に削除された場合はtrue、それ以外はfalse
      */
     bool removeCommandWord(const String &commandWord);
 
     /**
-     * @brief Searches for the command number associated with a command word.
+     * @brief コマンドワードに関連付けられたコマンド番号を検索します。
      *
-     * @param commandWord The command word to search for
-     * @return The associated command number if found, -1 if not found
+     * @param commandWord 検索するコマンドワード
+     * @return 関連付けられたコマンド番号が見つかった場合はその番号、見つからない場合は-1
      */
     int8_t searchCommandNum(const String &commandWord);
 
     /**
-     * @brief Searches for the command word associated with a command number.
+     * @brief コマンド番号に関連付けられたコマンドワードを検索します。
      *
-     * @param commandNum The command number to search for
-     * @return The associated command word if found, empty string if not found
+     * @param commandNum 検索するコマンド番号
+     * @return 関連付けられたコマンドワードが見つかった場合はそのワード、見つからない場合は空文字列
      */
     String searchCommandWord(uint8_t commandNum);
 
     /**
-     * @brief Processes any pending tick callbacks.
+     * @brief 保留中のティックコールバックを処理します。
      *
-     * Checks and executes any scheduled tick-based operations for the ASR unit.
+     * ASRユニットのスケジュールされたティックベースの操作を確認して実行します。
      */
     void checkTickCallback();
 
     /**
-     * @brief Updates the ASR unit's state and processes new commands.
+     * @brief ASRユニットの状態を更新し、新しいコマンドを処理します。
      *
-     * This function should be called regularly in the main loop to handle
-     * new voice commands and update the unit's state.
+     * この関数は、新しい音声コマンドを処理し、ユニットの状態を更新するために
+     * メインループで定期的に呼び出す必要があります。
      *
-     * @return true if a new command was processed, false otherwise
+     * @return 新しいコマンドが処理された場合はtrue、それ以外はfalse
      */
     bool update();
 
     /**
-     * @brief Prints the complete list of registered command words.
+     * @brief 登録されているコマンドワードの完全なリストを出力します。
      *
-     * Outputs all registered command words and their associated command numbers
-     * to the serial monitor for debugging purposes.
+     * デバッグ目的で、登録されているすべてのコマンドワードと
+     * それに関連付けられたコマンド番号をシリアルモニタに出力します。
      */
     void printCommandList();
 

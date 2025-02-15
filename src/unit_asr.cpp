@@ -2,6 +2,10 @@
  *SPDX-FileCopyrightText: 2025 M5Stack Technology CO LTD
  *
  *SPDX-License-Identifier: MIT
+ *
+ * このファイルはASRユニット（音声認識ユニット）の実装を提供します。
+ * ASRユニットはシリアル通信を介して音声コマンドを認識し、
+ * 対応するアクションを実行することができます。
  */
 
 #include <Arduino.h>
@@ -17,7 +21,7 @@ void ASRUnit::begin(HardwareSerial *serial, int baud, uint8_t RX, uint8_t TX)
 bool ASRUnit::update()
 {
     if (_serial == nullptr) {
-        Serial.println("Please call begin() first.");
+        Serial.println("begin()を最初に呼び出してください。");
         return 0;
     }
 
@@ -49,7 +53,7 @@ bool ASRUnit::update()
         }
 
 #ifdef UNIT_ASR_DEBUG
-        Serial.println("Received data: " + rawMessage);
+        Serial.println("受信データ: " + rawMessage);
 #endif
 
         if (message[1] == 0x55 && message[2] == 0xAA) {
@@ -76,7 +80,7 @@ String ASRUnit::getCurrentRawMessage()
 String ASRUnit::getCurrentCommandWord()
 {
 #ifdef UNIT_ASR_DEBUG
-    Serial.println("Command number: " + String(commandNum, HEX));
+    Serial.println("コマンド番号: " + String(commandNum, HEX));
 #endif
     return commandList.count(commandNum) ? commandList[commandNum].first : "Unknown command word";
 }
@@ -109,7 +113,7 @@ bool ASRUnit::removeCommandWord(const String &commandWord)
 void ASRUnit::printCommandList()
 {
     Serial.println("--------------------------------------------------------");
-    Serial.println("| Command Num |      Command Word       |   Handler   |");
+    Serial.println("| コマンド番号 |      コマンドワード      | ハンドラー |");
     Serial.println("--------------------------------------------------------");
 
     for (const auto &entry : commandList) {
@@ -135,7 +139,7 @@ int8_t ASRUnit::searchCommandNum(const String &commandWord)
 
 String ASRUnit::searchCommandWord(uint8_t commandNum)
 {
-    return commandList.count(commandNum) ? commandList[commandNum].first : "Unknown command word";
+    return commandList.count(commandNum) ? commandList[commandNum].first : "不明なコマンドワード";
 }
 
 void ASRUnit::checkTickCallback()
