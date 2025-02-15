@@ -1,24 +1,38 @@
 # Unit ASR
 
-## Overview
+## 概要
 
 ### SKU: U194
 
 <img src="https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/635/U914_01.webp" alt="basic" width="350" height="350">
 
-**Unit ASR** is an **AI** offline speech recognition unit, featuring the built-in AI smart offline speech module **CI-03T**. This unit offers powerful functions such as speech recognition, voiceprint recognition, speech enhancement, and speech detection. It supports AEC (Acoustic Echo Cancellation) to effectively eliminate echoes and noise interference, improving the accuracy of speech recognition. Additionally, it supports mid-speech interruption, allowing for flexible interruption during the recognition process and quick response to new commands. The product is pre-configured with wake-up words and feedback commands at the factory. The device uses **UART** serial communication for data transmission and also supports waking up the device via UART or voice keywords. This unit supports user customization of the **wake-up** recognition word and can recognize up to 300 command words. It is equipped with a **microphone** for clear audio capture and includes a **speaker** for high-quality audio feedback. This product is widely used in AI assistants, smart homes, security monitoring, automotive systems, robotics, smart hardware, healthcare, and other fields, making it an ideal choice for realizing smart voice interactions.
+**Unit ASR**は**AI**オフライン音声認識ユニットで、AIスマートオフラインスピーチモジュール**CI-03T**を内蔵しています。
 
-## Firmware Preset Commands
+このユニットは、音声認識、声紋認識、音声強調、音声検出などの強力な機能を提供します。AEC (Acoustic Echo Cancellation)をサポートし、エコーやノイズの干渉を効果的に除去し、音声認識の精度を向上させます。
 
-The following wake-up or command words are built into the Unit ASR factory firmware, along with the corresponding outputs from the serial port.
+さらに、音声の途中割り込みにも対応しており、認識プロセス中の柔軟な割り込みや、新しいコマンドへの迅速な対応が可能です。
 
-- [Unit ASR - Preset commands table](https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/635/UNIT-ASR-Factory_pre-assembly_instructions.pdf)
+本製品は、工場出荷時にウェイクアップ・ワードとフィードバック・コマンドがあらかじめ設定されています。
 
-## Related Link
+本機はデータ伝送に**UART**シリアル通信を使用し、UARTまたは音声キーワードによるウェイクアップもサポートしています。
 
-- [Unit ASR - Document & Datasheet](https://docs.m5stack.com/en/unit/Unit-ASR)
-- [Unit ASR - Custom Firmware & Burn Tutorial](http://docs.m5stack.com/en/guide/offline_voice/unit_asr/firmware)
+このUnit は**ウェイクアップ**認識ワードのユーザーカスタマイズをサポートし、最大300のコマンドワードを認識することができます。
 
-## License
+クリアな音声をキャプチャするための**マイクロフォン**を装備し、高品質な音声フィードバックのための**スピーカー**を搭載しています。
 
-- [MIT](LICENSE)
+本製品は、AIアシスタント、スマートホーム、セキュリティモニタリング、自動車システム、ロボット工学、スマートハードウェア、ヘルスケアなどの分野で幅広く使用されており、スマート音声インタラクションの実現に理想的な選択肢です。
+
+## ファームウェアのプリセットコマンド
+
+以下のウェイクアップまたはコマンドワードは、シリアルポートからの対応する出力とともに、Unit ASRの工場出荷時ファームウェアに組み込まれています。
+
+- [Unit ASR - プリセットコマンド表](https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/635/UNIT-ASR-Factory_pre-assembly_instructions.pdf)
+
+## 関連リンク
+
+- [Unit ASR - ドキュメント＆データシート](https://docs.m5stack.com/en/unit/Unit-ASR)
+- [Unit ASR - カスタムファームウェアと書き込みチュートリアル](http://docs.m5stack.com/en/guide/offline_voice/unit_asr/firmware)
+
+## ライセンス
+
+- [mit](ライセンス)
